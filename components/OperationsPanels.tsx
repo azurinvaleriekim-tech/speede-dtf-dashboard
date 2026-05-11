@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { Gauge, Target, Trophy } from "lucide-react";
-import type { DashboardPayload } from "@/lib/types";
+import type { DashboardPayload } from "../lib/types";
 import { AnimatedNumber } from "./AnimatedNumber";
 
 export function GoalPanel({ data }: { data: DashboardPayload }) {
