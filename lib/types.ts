@@ -5,6 +5,7 @@ export type DashboardSettings = {
   refreshIntervalSeconds?: number;
   tvMode?: boolean;
   soundEnabled?: boolean;
+  dailyRevenueGoal?: number;
 };
 
 export type OrderStatus =
