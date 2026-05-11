@@ -31,18 +31,18 @@ export type DashboardPayload = {
   };
 
   completionPercentage?: number;
-  
+
   printerUtilization?: {
-  name: string;
-  utilization: number;
-  activeJob: string;
-}[];
+    name: string;
+    utilization: number;
+    activeJob: string;
+  }[];
 
   employeeLeaderboard?: {
-  name: string;
-  orders: number;
-}[];
-  
+    name: string;
+    orders: number;
+  }[];
+
   revenue?: number;
   orders?: number;
   goal?: number;
