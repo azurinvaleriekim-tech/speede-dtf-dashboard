@@ -20,6 +20,16 @@ export type BusinessStatus =
   | "closing"
   | "closed";
 export type DashboardPayload = {
+  kpis: {
+    revenueToday: number;
+    ordersToday: number;
+  };
+
+  settings: {
+    dailyRevenueGoal: number;
+    dailyOrderGoal: number;
+  };
+
   revenue?: number;
   orders?: number;
   goal?: number;
