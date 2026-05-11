@@ -14,7 +14,7 @@ import {
   XAxis,
   YAxis
 } from "recharts";
-import type { ChartPoint } from "@/lib/types";
+import type { ChartPoint } from "../lib/types";
 
 const tooltipStyle = {
   background: "#111722",
