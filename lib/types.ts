@@ -1,8 +1,9 @@
 export type DashboardSettings = {
   darkMode?: boolean;
   cutoffTime?: string;
- afterHoursTime?: string;
+  afterHoursTime?: string;
   refreshIntervalSeconds?: number;
+  tvMode?: boolean;
 };
 
 export type OrderStatus =
