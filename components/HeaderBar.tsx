@@ -3,7 +3,7 @@
 import { Clock, RadioTower } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { StatusBadge } from "./StatusBadge";
-import type { BusinessStatus } from "@/lib/types";
+import type { BusinessStatus } from "../lib/types";
 
 function formatCountdown(totalSeconds: number) {
   const hours = Math.floor(totalSeconds / 3600);
