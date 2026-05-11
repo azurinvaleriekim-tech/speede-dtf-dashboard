@@ -6,6 +6,7 @@ export type DashboardSettings = {
   tvMode?: boolean;
   soundEnabled?: boolean;
   dailyRevenueGoal?: number;
+  dailyOrderGoal?: number;
 };
 
 export type OrderStatus =
