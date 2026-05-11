@@ -19,6 +19,12 @@ export type BusinessStatus =
   | "busy"
   | "closing"
   | "closed";
+export type DashboardPayload = {
+  revenue?: number;
+  orders?: number;
+  goal?: number;
+  throughput?: number;
+};
 
 export type QueueOrder = {
   id: string;
