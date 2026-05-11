@@ -4,6 +4,7 @@ export type DashboardSettings = {
   afterHoursTime?: string;
   refreshIntervalSeconds?: number;
   tvMode?: boolean;
+  soundEnabled?: boolean;
 };
 
 export type OrderStatus =
