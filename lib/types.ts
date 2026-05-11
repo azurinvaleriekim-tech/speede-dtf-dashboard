@@ -48,6 +48,7 @@ export type DashboardPayload = {
 topProducts?: {
   name: string;
   sold: number;
+  units: number;
   revenue: number;
 }[];
 
