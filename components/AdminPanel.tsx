@@ -3,7 +3,7 @@
 import type { ReactNode } from "react";
 import { Bell, Monitor, RefreshCcw, Save, SlidersHorizontal } from "lucide-react";
 import { useEffect, useState } from "react";
-import type { DashboardSettings, OrderStatus, QueueOrder } from "@/lib/types";
+import type { DashboardSettings, OrderStatus, QueueOrder } from "../lib/types";
 import { StatusBadge } from "./StatusBadge";
 
 async function fetchJson<T>(url: string): Promise<T> {
