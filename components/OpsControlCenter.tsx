@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 import { AnimatedNumber } from "./AnimatedNumber";
 import { useOps } from "../lib/useOps";
-import type { HeatmapPoint, PrinterAsset, ProductionOrder } from "@/lib/enterprise-types";
+import type { HeatmapPoint, PrinterAsset, ProductionOrder } from "../lib/enterprise-types";
 
 const stageColor: Record<string, string> = {
   "Awaiting Artwork": "text-amber border-amber/40 bg-amber/12",
