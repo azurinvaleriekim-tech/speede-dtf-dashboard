@@ -11,6 +11,7 @@ export type PrinterAsset = {
   estimatedFinish?: string;
   utilization?: number;
   inkLevels?: Record<string, number>;
+  maintenanceWarnings?: string[];
 };
 
 export type ProductionOrder = {
