@@ -17,6 +17,11 @@ export type OrderStatus =
 
 export type QueueOrder = {
   id: string;
+  orderNumber?: string;
+  customerName?: string;
+  orderType?: string;
+  source?: string;
+  assignedTo?: string;
   customer?: string;
   status: OrderStatus;
 };
