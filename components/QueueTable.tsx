@@ -3,7 +3,7 @@
 import { AlertTriangle } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
-import { formatDurationFrom } from "@/lib/time";
+import { formatDurationFrom } from "../lib/time";
 import type { QueueOrder } from "@/lib/types";
 import { StatusBadge } from "./StatusBadge";
 
