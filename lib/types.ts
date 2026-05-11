@@ -26,3 +26,8 @@ export type QueueOrder = {
   customer?: string;
   status: OrderStatus;
 };
+
+export type ChartPoint = {
+  label: string;
+  value: number;
+};
