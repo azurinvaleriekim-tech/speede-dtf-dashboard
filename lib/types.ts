@@ -45,6 +45,12 @@ export type DashboardPayload = {
   completed: number;
 }[];
 
+topProducts?: {
+  name: string;
+  sold: number;
+  revenue: number;
+}[];
+
   revenue?: number;
   orders?: number;
   goal?: number;
