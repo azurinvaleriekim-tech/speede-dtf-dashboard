@@ -39,9 +39,11 @@ export type DashboardPayload = {
   }[];
 
   employeeLeaderboard?: {
-    name: string;
-    orders: number;
-  }[];
+  name: string;
+  orders: number;
+  accuracy: number;
+  completed: number;
+}[];
 
   revenue?: number;
   orders?: number;
