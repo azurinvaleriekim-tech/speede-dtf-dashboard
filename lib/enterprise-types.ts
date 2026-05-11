@@ -10,6 +10,7 @@ export type PrinterAsset = {
   currentJob?: string;
   estimatedFinish?: string;
   utilization?: number;
+  inkLevels?: Record<string, number>;
 };
 
 export type ProductionOrder = {
