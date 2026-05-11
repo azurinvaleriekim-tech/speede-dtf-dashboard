@@ -1,6 +1,8 @@
 export type HeatmapPoint = {
+  day: string;
   hour: string;
   orders: number;
+  bottleneckScore: number;
 };
 
 export type PrinterAsset = {
