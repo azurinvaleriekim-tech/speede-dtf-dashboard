@@ -18,7 +18,7 @@ import {
   Users
 } from "lucide-react";
 import { AnimatedNumber } from "./AnimatedNumber";
-import { useOps } from "./useOps";
+import { useOps } from "../lib/useOps";
 import type { HeatmapPoint, PrinterAsset, ProductionOrder } from "@/lib/enterprise-types";
 
 const stageColor: Record<string, string> = {
