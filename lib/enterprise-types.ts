@@ -7,6 +7,9 @@ export type PrinterAsset = {
   id: string;
   name: string;
   status: string;
+  currentJob?: string;
+  estimatedFinish?: string;
+  utilization?: number;
 };
 
 export type ProductionOrder = {
