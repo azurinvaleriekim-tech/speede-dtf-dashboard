@@ -22,6 +22,7 @@ export type QueueOrder = {
   orderType?: string;
   source?: string;
   assignedTo?: string;
+  rush?: boolean;
   customer?: string;
   status: OrderStatus;
 };
