@@ -8,7 +8,7 @@ import { MonthlySales, OrdersPerHour, RevenueTrend, ThroughputChart } from "./Ch
 import { QueueTable } from "./QueueTable";
 import { GoalPanel, LeaderboardPanel, PrinterPanel, TopProductsPanel } from "./OperationsPanels";
 import { Ticker } from "./Ticker";
-import { useDashboard } from "./useDashboard";
+import { useDashboard } from "../lib/useDashboard";
 
 export function DashboardView({ tv = false }: { tv?: boolean }) {
   const { data, error } = useDashboard(60);
