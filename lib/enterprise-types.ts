@@ -16,6 +16,9 @@ export type ProductionOrder = {
   productType?: string;
   gangSheetSize?: string;
   dueTime?: string;
+  assignedPrinter?: string;
+  assignedEmployee?: string;
+  barcodeId?: string;
   status: string;
   rush?: boolean;
   atRisk?: boolean;
