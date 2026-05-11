@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { QrCode, Search } from "lucide-react";
 import { useMemo, useState } from "react";
-import { useOps } from "./useOps";
+import { useOps } from "../lib/useOps";
 
 export function PickupBoard() {
   const { data } = useOps(60);
