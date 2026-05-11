@@ -1,6 +1,7 @@
 export type DashboardSettings = {
   darkMode?: boolean;
   cutoffTime?: string;
+  afterHoursTime?: string;
 };
 
 export type OrderStatus =
