@@ -30,6 +30,14 @@ export type DashboardPayload = {
     dailyOrderGoal: number;
   };
 
+  completionPercentage?: number;
+
+  revenue?: number;
+  orders?: number;
+  goal?: number;
+  throughput?: number;
+};
+
   revenue?: number;
   orders?: number;
   goal?: number;
