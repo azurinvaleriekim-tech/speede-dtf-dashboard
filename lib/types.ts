@@ -67,6 +67,7 @@ export type QueueOrder = {
   assignedTo?: string;
   rush?: boolean;
   createdAt?: string;
+  estimatedCompletion?: string;
   customer?: string;
   status: OrderStatus;
 };
