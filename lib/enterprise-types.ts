@@ -14,6 +14,8 @@ export type ProductionOrder = {
   orderNumber?: string;
   customer: string;
   productType?: string;
+  gangSheetSize?: string;
+  dueTime?: string;
   status: string;
   rush?: boolean;
   atRisk?: boolean;
