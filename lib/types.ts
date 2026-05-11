@@ -14,6 +14,11 @@ export type OrderStatus =
   | "processing"
   | "completed"
   | "cancelled";
+export type BusinessStatus =
+  | "open"
+  | "busy"
+  | "closing"
+  | "closed";
 
 export type QueueOrder = {
   id: string;
