@@ -47,5 +47,6 @@ export type PrinterAsset = {
 export type HeatmapPoint = {
   day: string;
   hour: number;
+  orders: number;
   bottleneckScore: number;
 };
