@@ -79,41 +79,51 @@ export type EnterpriseDashboardPayload = {
   dueSoon?: ProductionOrder[];
 
   forecast?: {
-  estimatedCompletionTime: string;
-  projectedOrdersToday: number;
+    estimatedCompletionTime: string;
+    projectedOrdersToday: number;
 
-  busyHourPrediction: string;
+    busyHourPrediction: string;
 
-  dailyVolumePrediction: number;
+    dailyVolumePrediction: number;
 
-  materialUsageFeet: number;
+    materialUsageFeet: number;
 
-  inkUsageMl: number;
+    inkUsageMl: number;
 
-  rushOrderProbability: number;
+    rushOrderProbability: number;
 
-  staffingRecommendation: string;
+    staffingRecommendation: string;
+  };
+
+  printers: PrinterAsset[];
+
+  gangSheets?: {
+    id: string;
+    size: string;
+
+    dueWindow: string;
+
+    orderCount: number;
+
+    rushCount: number;
+
+    assignedPrinter: string;
+
+    wastePercent: number;
+
+    wasteReduction: number;
+
+    sequence: string[];
+
+    completionPercent: number;
+  }[];
+
+  employees?: {
+    id: string;
+    name: string;
+    productivity: number;
+    activeJobs: number;
+  }[];
+
+  heatmap?: HeatmapPoint[];
 };
-
-printers: PrinterAsset[];
-
-gangSheets?: {
-  id: string;
-  size: string;
-
-  dueWindow: string;
-
-  orderCount: number;
-
-  rushCount: number;
-
-  assignedPrinter: string;
-
-  wastePercent: number;
-
-  wasteReduction: number;
-
-  sequence: string[];
-
-  completionPercent: number;
-}[];
