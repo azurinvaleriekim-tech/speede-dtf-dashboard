@@ -23,7 +23,6 @@ export type ProductionOrder = {
 };
 
 export type PrinterAsset = {
-export type PrinterAsset = {
   id: string;
   name: string;
 
