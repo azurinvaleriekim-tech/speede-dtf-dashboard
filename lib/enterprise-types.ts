@@ -100,16 +100,20 @@ printers: PrinterAsset[];
 gangSheets?: {
   id: string;
   size: string;
-  quantity: number;
-  status: string;
-}[];
 
-employees?: {
-  id: string;
-  name: string;
-  productivity: number;
-  activeJobs: number;
-}[];
+  dueWindow: string;
 
-heatmap?: HeatmapPoint[];
-};
+  orderCount: number;
+
+  rushCount: number;
+
+  assignedPrinter: string;
+
+  wastePercent: number;
+
+  wasteReduction: number;
+
+  sequence: string[];
+
+  completionPercent: number;
+}[];
