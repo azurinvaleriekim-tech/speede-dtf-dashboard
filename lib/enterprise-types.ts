@@ -115,11 +115,12 @@ export type EnterpriseDashboardPayload = {
     errorRate: number;
   }[];
 
-  bottlenecks?: {
-    stage: string;
-    delayMinutes: number;
-    affectedOrders: number;
-  }[];
+ bottlenecks?: {
+  stage: string;
+  severity: string;
+  message: string;
+  affectedOrders: number;
+}[];
 
   notifications?: {
     id: string;
