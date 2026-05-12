@@ -119,11 +119,17 @@ export type EnterpriseDashboardPayload = {
   }[];
 
   employees?: {
-    id: string;
-    name: string;
-    productivity: number;
-    activeJobs: number;
-  }[];
+  id: string;
 
-  heatmap?: HeatmapPoint[];
-};
+  name: string;
+
+  role: string;
+
+  activeTask: string;
+
+  completedToday: number;
+
+  averageSpeedMinutes: number;
+
+  errorRate: number;
+}[];
