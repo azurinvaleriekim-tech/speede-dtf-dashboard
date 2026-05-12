@@ -95,7 +95,21 @@ export type EnterpriseDashboardPayload = {
   staffingRecommendation: string;
 };
 
-  printers: PrinterAsset[];
+printers: PrinterAsset[];
 
-  heatmap?: HeatmapPoint[];
+gangSheets?: {
+  id: string;
+  size: string;
+  quantity: number;
+  status: string;
+}[];
+
+employees?: {
+  id: string;
+  name: string;
+  productivity: number;
+  activeJobs: number;
+}[];
+
+heatmap?: HeatmapPoint[];
 };
