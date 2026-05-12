@@ -21,6 +21,9 @@ export type ProductionOrder = {
   assignedPrinter: string;
   assignedEmployee: string;
   barcodeId: string;
+
+  pickupMethod?: string;
+
   rush?: boolean;
   atRisk?: boolean;
   createdAt?: string;
