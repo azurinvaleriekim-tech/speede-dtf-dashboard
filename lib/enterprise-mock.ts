@@ -52,6 +52,7 @@ export const enterpriseMock: EnterpriseDashboardPayload = {
       currentJob: "DTF-10482",
       utilization: 91,
       inkLevels: { c: 74, m: 68, y: 81, k: 63, w: 52 }
+      maintenanceWarnings: []
     },
     {
       id: "printer_b",
