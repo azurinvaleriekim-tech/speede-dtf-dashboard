@@ -58,6 +58,8 @@ export type HeatmapPoint = {
 export type EnterpriseDashboardPayload = {
   generatedAt: string;
 
+  websocketUrl?: string;
+
   kpis: {
     ordersToday: number;
     revenueToday: number;
