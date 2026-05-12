@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import type { LucideIcon } from "lucide-react";
+import type { LucideIcon } from "./icons";
 import { AnimatedNumber } from "./AnimatedNumber";
 
 type KpiCardProps = {
@@ -9,7 +9,6 @@ type KpiCardProps = {
   value: number;
   icon: LucideIcon;
   currency?: boolean;
-  suffix?: string;
   accent?: "cyan" | "lime" | "amber" | "danger";
   detail: string;
 };
@@ -21,7 +20,7 @@ const accents = {
   danger: "from-danger/24 text-danger"
 };
 
-export function KpiCard({ title, value, icon: Icon, currency, suffix, accent = "cyan", detail }: KpiCardProps) {
+export function KpiCard({ title, value, icon: Icon, currency, accent = "cyan", detail }: KpiCardProps) {
   return (
     <motion.article
       layout
@@ -34,7 +33,7 @@ export function KpiCard({ title, value, icon: Icon, currency, suffix, accent = "
         <div>
           <p className="text-sm font-medium uppercase tracking-[0.16em] text-white/48">{title}</p>
           <div className="mt-3 text-4xl font-black leading-none text-white xl:text-5xl">
-            <AnimatedNumber value={value} currency={currency} suffix={suffix} />
+            <AnimatedNumber value={value} currency={currency} />
           </div>
         </div>
         <div className={`rounded-lg border border-white/10 bg-white/5 p-3 ${accents[accent].split(" ").at(-1)}`}>

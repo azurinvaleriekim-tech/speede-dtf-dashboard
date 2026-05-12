@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { Gauge, Target, Trophy } from "lucide-react";
+import { Gauge, Target, Trophy } from "./icons";
 import type { DashboardPayload } from "../lib/types";
 import { AnimatedNumber } from "./AnimatedNumber";
 

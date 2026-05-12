@@ -1,6 +1,6 @@
 "use client";
 
-import { Activity, Banknote, Boxes, CheckCircle2, Clock3, Flame, PackageCheck, Printer, ShoppingCart } from "lucide-react";
+import { Activity, Banknote, Boxes, CheckCircle2, Clock3, Flame, PackageCheck, ShoppingCart } from "./icons";
 import { AnimatePresence, motion } from "framer-motion";
 import { HeaderBar } from "./HeaderBar";
 import { KpiCard } from "./KpiCard";
@@ -8,7 +8,7 @@ import { MonthlySales, OrdersPerHour, RevenueTrend, ThroughputChart } from "./Ch
 import { QueueTable } from "./QueueTable";
 import { GoalPanel, LeaderboardPanel, PrinterPanel, TopProductsPanel } from "./OperationsPanels";
 import { Ticker } from "./Ticker";
-import { useDashboard } from "../lib/useDashboard";
+import { useDashboard } from "./useDashboard";
 
 export function DashboardView({ tv = false }: { tv?: boolean }) {
   const { data, error } = useDashboard(60);
@@ -35,9 +35,7 @@ export function DashboardView({ tv = false }: { tv?: boolean }) {
           <KpiCard title="Revenue Today" value={data.kpis.revenueToday} icon={Banknote} currency accent="cyan" detail="gross production revenue" />
           <KpiCard title="Revenue This Month" value={data.kpis.revenueThisMonth} icon={Activity} currency accent="lime" detail="tracked across stores" />
           <KpiCard title="Average Order Value" value={data.kpis.averageOrderValue} icon={PackageCheck} currency accent="amber" detail="today's blended AOV" />
-          <KpiCard title="Avg Turnaround" value={data.kpis.averageTurnaroundMinutes} icon={Clock3} suffix="m" accent="cyan" detail="completed today" />
           <KpiCard title="Orders In Queue" value={data.kpis.ordersInQueue} icon={Clock3} accent="amber" detail="waiting or printing" />
-          <KpiCard title="Processing" value={data.kpis.processingOrders} icon={Printer} accent="cyan" detail="actively in production" />
           <KpiCard title="Rush Pending" value={data.kpis.rushOrdersPending} icon={Flame} accent="danger" detail="requires priority handling" />
           <KpiCard title="Completed Today" value={data.kpis.ordersCompletedToday} icon={CheckCircle2} accent="lime" detail="closed production jobs" />
         </section>

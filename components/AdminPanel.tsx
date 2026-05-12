@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { Bell, Monitor, RefreshCcw, Save, SlidersHorizontal } from "lucide-react";
+import { Bell, Monitor, RefreshCcw, Save, SlidersHorizontal } from "./icons";
 import { useEffect, useState } from "react";
 import type { DashboardSettings, OrderStatus, QueueOrder } from "../lib/types";
 import { StatusBadge } from "./StatusBadge";

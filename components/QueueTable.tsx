@@ -1,40 +1,13 @@
 "use client";
 
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle } from "./icons";
 import { motion } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
 import { formatDurationFrom } from "../lib/time";
 import type { QueueOrder } from "../lib/types";
 import { StatusBadge } from "./StatusBadge";
 
-export function QueueTable({
-  orders,
-  compact = false,
-  autoScroll = false
-}: {
-  orders: QueueOrder[];
-  compact?: boolean;
-  autoScroll?: boolean;
-}) {
-  const pageSize = compact ? 6 : orders.length;
-  const [offset, setOffset] = useState(0);
-
-  useEffect(() => {
-    if (!autoScroll || orders.length <= pageSize) return undefined;
-
-    const timer = setInterval(() => {
-      setOffset((current) => (current + 1) % orders.length);
-    }, 4200);
-
-    return () => clearInterval(timer);
-  }, [autoScroll, orders.length, pageSize]);
-
-  const visibleOrders = useMemo(() => {
-    if (!compact) return orders;
-    if (!autoScroll || orders.length <= pageSize) return orders.slice(0, pageSize);
-
-    return Array.from({ length: pageSize }, (_, index) => orders[(offset + index) % orders.length]);
-  }, [autoScroll, compact, offset, orders, pageSize]);
+export function QueueTable({ orders, compact = false }: { orders: QueueOrder[]; compact?: boolean }) {
+  const visibleOrders = compact ? orders.slice(0, 6) : orders;
 
   return (
     <section className="glass-panel overflow-hidden rounded-lg">
@@ -59,7 +32,7 @@ export function QueueTable({
               <th className="px-5 py-3">ETA</th>
             </tr>
           </thead>
-          <motion.tbody key={offset} initial={{ y: 10, opacity: 0.82 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.45 }}>
+          <tbody>
             {visibleOrders.map((order) => (
               <motion.tr
                 key={order.id}
@@ -89,7 +62,7 @@ export function QueueTable({
                 </td>
               </motion.tr>
             ))}
-          </motion.tbody>
+          </tbody>
         </table>
       </div>
     </section>

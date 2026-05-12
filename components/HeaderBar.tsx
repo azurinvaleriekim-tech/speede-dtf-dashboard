@@ -1,6 +1,6 @@
 "use client";
 
-import { Clock, RadioTower } from "lucide-react";
+import { Clock, RadioTower } from "./icons";
 import { useEffect, useMemo, useState } from "react";
 import { StatusBadge } from "./StatusBadge";
 import type { BusinessStatus } from "../lib/types";
