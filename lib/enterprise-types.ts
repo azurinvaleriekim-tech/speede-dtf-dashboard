@@ -55,6 +55,7 @@ export type HeatmapPoint = {
   orders: number;
   bottleneckScore: number;
 };
+
 export type EnterpriseDashboardPayload = {
   generatedAt: string;
 
@@ -81,17 +82,11 @@ export type EnterpriseDashboardPayload = {
   forecast?: {
     estimatedCompletionTime: string;
     projectedOrdersToday: number;
-
     busyHourPrediction: string;
-
     dailyVolumePrediction: number;
-
     materialUsageFeet: number;
-
     inkUsageMl: number;
-
     rushOrderProbability: number;
-
     staffingRecommendation: string;
   };
 
@@ -100,36 +95,25 @@ export type EnterpriseDashboardPayload = {
   gangSheets?: {
     id: string;
     size: string;
-
     dueWindow: string;
-
     orderCount: number;
-
     rushCount: number;
-
     assignedPrinter: string;
-
     wastePercent: number;
-
     wasteReduction: number;
-
     sequence: string[];
-
     completionPercent: number;
   }[];
 
   employees?: {
-  id: string;
+    id: string;
+    name: string;
+    role: string;
+    activeTask: string;
+    completedToday: number;
+    averageSpeedMinutes: number;
+    errorRate: number;
+  }[];
 
-  name: string;
-
-  role: string;
-
-  activeTask: string;
-
-  completedToday: number;
-
-  averageSpeedMinutes: number;
-
-  errorRate: number;
-}[];
+  heatmap?: HeatmapPoint[];
+};
