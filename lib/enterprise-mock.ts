@@ -122,13 +122,14 @@ export const enterpriseMock: EnterpriseDashboardPayload = {
   ],
 
   notifications: [
-    {
-      id: "notif_1",
-      type: "warning",
-      message: "Printer B maintenance required",
-      createdAt: toIso()
-    }
-  ],
+  {
+    id: "notif_1",
+    channel: "Slack",
+    recipient: "Production Team",
+    type: "warning",
+    status: "sent"
+  }
+],
 
   heatmap: [
     {
