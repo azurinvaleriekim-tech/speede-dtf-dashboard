@@ -122,12 +122,12 @@ export type EnterpriseDashboardPayload = {
   affectedOrders: number;
 }[];
 
-  notifications?: {
-    id: string;
-    type: "info" | "warning" | "error";
-    message: string;
-    createdAt: string;
-  }[];
-
+ notifications?: {
+  id: string;
+  channel: string;
+  recipient: string;
+  type: string;
+  status: string;
+}[];
   heatmap?: HeatmapPoint[];
 };
