@@ -43,7 +43,7 @@ export async function getDashboardPayload(): Promise<DashboardPayload> {
   return {
     generatedAt: new Date().toISOString(),
 
-    status: "LIVE",
+    status: "OPEN",
 
     countdownSeconds: 0,
 
