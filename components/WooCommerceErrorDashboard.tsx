@@ -2,7 +2,7 @@
 
 import useSWR from "swr";
 import { AlertTriangle, CheckCircle2, RefreshCw, Trash2 } from "lucide-react";
-import type { IntegrationLogEntry } from "@/lib/integration-log";
+import type { IntegrationLogEntry } from "../lib/integration-log";
 
 const fetcher = async (url: string) => {
   const response = await fetch(url);
