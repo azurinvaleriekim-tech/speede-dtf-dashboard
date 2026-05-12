@@ -69,17 +69,34 @@ export async function getDashboardPayload(): Promise<DashboardPayload> {
     },
 
     queue: orders.slice(0, 10).map((order: any) => ({
-      id: String(order.id),
-      orderNumber: `#${order.number}`,
-      customer: order.billing.first_name + " " + order.billing.last_name,
-      productType: order.line_items?.[0]?.name ?? "Order",
-      gangSheetSize: "N/A",
-      dueTime: order.date_created,
-      status: order.status === "completed" ? "Completed" : "Printing",
-      assignedPrinter: "Auto",
-      assignedEmployee: "System",
-      barcodeId: `WC-${order.id}`
-    })),
+  id: String(order.id),
+
+  orderNumber: `#${order.number}`,
+
+  customerName:
+    `${order.billing.first_name} ${order.billing.last_name}`,
+
+  orderType: "DTF Gang Sheet",
+
+  status:
+    order.status === "completed"
+      ? "Completed"
+      : "Printing",
+
+  createdAt: order.date_created,
+
+  estimatedCompletion: order.date_created,
+
+  rush: false,
+
+  total: Number(order.total),
+
+  itemCount: order.line_items?.length ?? 0,
+
+  assignedTo: "Production Team",
+
+  source: "WooCommerce"
+})),
 
     charts: {
       revenueToday: [],
