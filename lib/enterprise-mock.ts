@@ -20,7 +20,7 @@ export const enterpriseMock: EnterpriseDashboardPayload = {
     {
       id: "prod_10482",
       orderNumber: "DTF-10482",
-      customerName: "Northline Athletics",
+      customer: "Northline Athletics",
       productType: "DTF Gang Sheet",
       gangSheetSize: "22x60",
       status: "Printing",
@@ -33,7 +33,7 @@ export const enterpriseMock: EnterpriseDashboardPayload = {
     {
       id: "prod_10484",
       orderNumber: "DTF-10484",
-      customerName: "Kinetic Coffee Co.",
+      customer: "Kinetic Coffee Co.",
       productType: "DTF Gang Sheet",
       gangSheetSize: "22x120",
       status: "Awaiting Artwork",
