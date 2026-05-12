@@ -79,9 +79,21 @@ export type EnterpriseDashboardPayload = {
   dueSoon?: ProductionOrder[];
 
   forecast?: {
-    estimatedCompletionTime: string;
-    projectedOrdersToday: number;
-  };
+  estimatedCompletionTime: string;
+  projectedOrdersToday: number;
+
+  busyHourPrediction: string;
+
+  dailyVolumePrediction: number;
+
+  materialUsageFeet: number;
+
+  inkUsageMl: number;
+
+  rushOrderProbability: number;
+
+  staffingRecommendation: string;
+};
 
   printers: PrinterAsset[];
 
