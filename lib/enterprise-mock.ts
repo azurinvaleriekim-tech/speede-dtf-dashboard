@@ -51,7 +51,7 @@ export const enterpriseMock: EnterpriseDashboardPayload = {
       status: "Printing",
       currentJob: "DTF-10482",
       utilization: 91,
-      inkLevels: { c: 74, m: 68, y: 81, k: 63, white: 52 }
+      inkLevels: { c: 74, m: 68, y: 81, k: 63, w: 52 }
     },
     {
       id: "printer_b",
@@ -59,7 +59,7 @@ export const enterpriseMock: EnterpriseDashboardPayload = {
       status: "Maintenance",
       currentJob: "DTF-10484",
       utilization: 74,
-      inkLevels: { c: 48, m: 55, y: 61, k: 46, white: 38 },
+      inkLevels: { c: 48, m: 55, y: 61, k: 46, w: 38 },
       maintenanceWarnings: ["Daily head clean due"]
     }
   ]
