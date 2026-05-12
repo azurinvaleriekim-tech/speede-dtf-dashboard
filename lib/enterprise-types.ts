@@ -6,6 +6,8 @@ export type ProductionStage =
   | "Curing"
   | "Cutting"
   | "Packing"
+  | "Ready for Pickup"
+  | "Shipped"
   | "Completed";
 
 export type ProductionOrder = {
