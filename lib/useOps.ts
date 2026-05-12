@@ -1,7 +1,7 @@
 "use client";
 
 import useSWR from "swr";
-import type { OperatingSystemPayload } from "@/lib/enterprise-types";
+import type { EnterpriseDashboardPayload } from "./enterprise-types";
 
 const fetcher = async (url: string) => {
   const response = await fetch(url);
@@ -10,7 +10,7 @@ const fetcher = async (url: string) => {
 };
 
 export function useOps(refreshSeconds = 60) {
-  return useSWR<OperatingSystemPayload>("/api/ops", fetcher, {
+  return useSWR<EnterpriseDashboardPayload>("/api/ops", fetcher, {
     refreshInterval: refreshSeconds * 1000,
     revalidateOnFocus: false,
     keepPreviousData: true
