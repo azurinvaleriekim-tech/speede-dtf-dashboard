@@ -2,8 +2,8 @@
 
 import { Camera, Keyboard, PackageCheck, ScanLine } from "lucide-react";
 import { useState } from "react";
-import type { ProductionStage } from "@/lib/enterprise-types";
-import { useOps } from "./useOps";
+import type { ProductionStage } from "../lib/enterprise-types";
+import { useOps } from "../lib/useOps";
 
 const stages: ProductionStage[] = [
   "Awaiting Artwork",
