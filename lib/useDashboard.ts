@@ -1,7 +1,7 @@
 "use client";
 
 import useSWR from "swr";
-import type { DashboardPayload } from "@/lib/types";
+import type { DashboardPayload } from "./types";
 
 const fetcher = async (url: string) => {
   const response = await fetch(url);
