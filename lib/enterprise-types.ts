@@ -56,7 +56,25 @@ export type HeatmapPoint = {
   bottleneckScore: number;
 };
 export type EnterpriseDashboardPayload = {
-  orders: ProductionOrder[];
+  generatedAt: string;
+
+  kpis: {
+    ordersToday: number;
+    revenueToday: number;
+    revenueThisMonth: number;
+    ordersInQueue: number;
+    rushOrders: number;
+    ordersCompleted: number;
+    averageTurnaroundMinutes: number;
+    pendingPickups: number;
+    failedOrders: number;
+    reprintCount: number;
+    productionCompletionPercent: number;
+  };
+
+  queue: ProductionOrder[];
+
   printers: PrinterAsset[];
-  heatmap: HeatmapPoint[];
+
+  heatmap?: HeatmapPoint[];
 };
