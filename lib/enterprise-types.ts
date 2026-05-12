@@ -55,3 +55,8 @@ export type HeatmapPoint = {
   orders: number;
   bottleneckScore: number;
 };
+export type EnterpriseDashboardPayload = {
+  orders: ProductionOrder[];
+  printers: PrinterAsset[];
+  heatmap: HeatmapPoint[];
+};
