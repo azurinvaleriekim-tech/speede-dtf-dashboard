@@ -1,6 +1,9 @@
 export type ProductionStage =
   | "Awaiting Artwork"
+  | "Ready to Print"
   | "Printing"
+  | "Powdering"
+  | "Curing"
   | "Cutting"
   | "Packing"
   | "Completed";
