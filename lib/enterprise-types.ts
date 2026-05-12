@@ -115,5 +115,18 @@ export type EnterpriseDashboardPayload = {
     errorRate: number;
   }[];
 
+  bottlenecks?: {
+    stage: string;
+    delayMinutes: number;
+    affectedOrders: number;
+  }[];
+
+  notifications?: {
+    id: string;
+    type: "info" | "warning" | "error";
+    message: string;
+    createdAt: string;
+  }[];
+
   heatmap?: HeatmapPoint[];
 };
