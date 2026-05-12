@@ -25,7 +25,7 @@ export type ProductionOrder = {
 export type PrinterAsset = {
   id: string;
   name: string;
-  status: "idle" | "printing" | "maintenance" | "offline";
+  status: "Idle" | "Printing" | "Maintenance" | "Error";
   currentJob?: string;
   estimatedFinish?: string;
 
