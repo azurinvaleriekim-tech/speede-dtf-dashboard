@@ -76,6 +76,13 @@ export type EnterpriseDashboardPayload = {
 
   queue: ProductionOrder[];
 
+  dueSoon?: ProductionOrder[];
+
+  forecast?: {
+    estimatedCompletionTime: string;
+    projectedOrdersToday: number;
+  };
+
   printers: PrinterAsset[];
 
   heatmap?: HeatmapPoint[];
