@@ -48,9 +48,14 @@ export async function getDashboardPayload(): Promise<DashboardPayload> {
     countdownSeconds: 0,
 
     settings: {
-      cutoffTime: "5:00 PM",
-      afterHoursTime: "8:00 PM"
-    },
+  cutoffTime: "5:00 PM",
+  afterHoursTime: "8:00 PM",
+  refreshIntervalSeconds: 60,
+  tvMode: false,
+  soundEnabled: true,
+  dailyRevenueGoal: 10000,
+  dailyOrderGoal: 100
+},
 
     kpis: {
       ordersToday: orders.length,
