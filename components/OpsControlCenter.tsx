@@ -104,8 +104,8 @@ export function OpsControlCenter() {
         </section>
 
         <section className="grid gap-5 lg:grid-cols-2">
-          <BottleneckPanel bottlenecks={data.bottlenecks} />
-          <NotificationPanel notifications={data.notifications} />
+          <BottleneckPanel bottlenecks={data.bottlenecks ?? []} />
+          <NotificationPanel notifications={data.notifications ?? []} />
         </section>
       </div>
     </main>
