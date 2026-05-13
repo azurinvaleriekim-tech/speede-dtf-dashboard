@@ -74,7 +74,7 @@ export function OpsControlCenter() {
         <section className="grid gap-5 xl:grid-cols-[1.5fr_0.9fr]">
           <ProductionQueue orders={data.queue} />
           <div className="grid gap-5">
-            <DueSoon orders={data.dueSoon} />
+            <DueSoon orders={data.dueSoon ?? []} />
             <ForecastCard forecast={data.forecast} completion={data.kpis.productionCompletionPercent} />
           </div>
         </section>
