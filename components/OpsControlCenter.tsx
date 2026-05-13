@@ -75,7 +75,19 @@ export function OpsControlCenter() {
           <ProductionQueue orders={data.queue} />
           <div className="grid gap-5">
             <DueSoon orders={data.dueSoon ?? []} />
-            <ForecastCard forecast={data.forecast} completion={data.kpis.productionCompletionPercent} />
+            <ForecastCard
+  forecast={
+    data.forecast ?? {
+      busyHourPrediction: "",
+      dailyVolumePrediction: 0,
+      materialUsageFeet: 0,
+      inkUsageMl: 0,
+      rushOrderProbability: 0,
+      staffingRecommendation: ""
+    }
+  }
+  completion={data.kpis.productionCompletionPercent}
+/>
           </div>
         </section>
 
