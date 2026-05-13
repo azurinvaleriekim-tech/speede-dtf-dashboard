@@ -36,9 +36,9 @@ export async function getDashboardPayload(): Promise<DashboardPayload> {
   ).length;
 
   const revenueToday = orders.reduce(
-    (sum: number, order: any) => sum + Number(order.total),
-    0
-  );
+  (sum: number, order: any) => sum + Number(order.total ?? 0),
+  0
+);
 
   return {
     generatedAt: new Date().toISOString(),
@@ -69,12 +69,12 @@ export async function getDashboardPayload(): Promise<DashboardPayload> {
     },
 
     queue: orders.slice(0, 10).map((order: any) => ({
-  id: String(order.id),
+  id: String(order.id ?? ""),
 
-  orderNumber: `#${order.number}`,
+  orderNumber: `#${order.number ?? "Unknown"}`,
 
   customerName:
-    `${order.billing.first_name} ${order.billing.last_name}`,
+    `${order.billing?.first_name ?? ""} ${order.billing?.last_name ?? ""}`.trim() || "Customer",
 
   orderType: "DTF Gang Sheet",
 
@@ -83,13 +83,14 @@ export async function getDashboardPayload(): Promise<DashboardPayload> {
       ? "Completed"
       : "Printing",
 
-  createdAt: order.date_created,
+  createdAt: order.date_created ?? new Date().toISOString(),
 
-  estimatedCompletion: order.date_created,
+  estimatedCompletion:
+    order.date_created ?? new Date().toISOString(),
 
   rush: false,
 
-  total: Number(order.total),
+  total: Number(order.total ?? 0),
 
   itemCount: order.line_items?.length ?? 0,
 
