@@ -98,7 +98,7 @@ export function OpsControlCenter() {
         </section>
 
         <section className="grid gap-5 xl:grid-cols-[1.1fr_0.9fr_0.9fr]">
-          <GangSheetPanel batches={data.gangSheets} />
+          <GangSheetPanel batches={data.gangSheets ?? []} />
           <EmployeePanel employees={data.employees} />
           <HeatmapPanel heatmap={data.heatmap} />
         </section>
