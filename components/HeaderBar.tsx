@@ -23,7 +23,14 @@ export function HeaderBar({
   cutoffTime: string;
   generatedAt: string;
 }) {
-  const [now, setNow] = useState(new Date());
+  const [now, setNow] = useState(
+    new Date(
+      new Date().toLocaleString("en-US", {
+        timeZone: "America/Chicago"
+      })
+    )
+  );
+
   const [countdown, setCountdown] = useState(countdownSeconds);
 
   useEffect(() => {
@@ -32,12 +39,19 @@ export function HeaderBar({
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setNow(new Date());
+      setNow(
+        new Date(
+          new Date().toLocaleString("en-US", {
+            timeZone: "America/Chicago"
+          })
+        )
+      );
+
       setCountdown((value) => Math.max(0, value - 1));
     }, 1000);
+
     return () => clearInterval(timer);
   }, []);
-
   const dateLabel = useMemo(
     () =>
       new Intl.DateTimeFormat("en-US", {
