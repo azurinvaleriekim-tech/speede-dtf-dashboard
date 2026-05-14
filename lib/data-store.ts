@@ -40,11 +40,7 @@ export async function getDashboardPayload(): Promise<DashboardPayload> {
 const todayOrders = orders.filter((order: any) => {
   const orderDate = new Date(order.date_created);
 
-  return (
-    orderDate.getDate() === now.getDate() &&
-    orderDate.getMonth() === now.getMonth() &&
-    orderDate.getFullYear() === now.getFullYear()
-  );
+  return orderDate.toDateString() === now.toDateString();
 });
 
 const monthOrders = orders.filter((order: any) => {
@@ -74,7 +70,7 @@ const averageOrderValue =
 const suspiciousOrders = orders.filter((order: any) => {
   const total = Number(order.total ?? 0);
 
-  return total > averageOrderValue * 2;
+  return total > Math.max(averageOrderValue * 2, 150);
 });
 
   return {
