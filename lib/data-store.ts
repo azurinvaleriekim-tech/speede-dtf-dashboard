@@ -123,10 +123,9 @@ const suspiciousOrders = orders.filter((order: any) => {
 
     employeeLeaderboard: [],
 
-    ticker: [
-      `${orders.length} WooCommerce orders synced`,
-      `${completed} completed orders`,
-      `${processing} processing orders`
-    ]
-  };
-}
+ticker: [
+  `${orders.length} WooCommerce orders synced`,
+  `${completed} completed orders`,
+  `${processing} processing orders`,
+  `${suspiciousOrders.length} suspicious high-value orders detected`
+]
