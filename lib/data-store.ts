@@ -40,6 +40,15 @@ export async function getDashboardPayload(): Promise<DashboardPayload> {
   0
 );
 
+const averageOrderValue =
+  revenueToday / Math.max(1, orders.length);
+
+const suspiciousOrders = orders.filter((order: any) => {
+  const total = Number(order.total ?? 0);
+
+  return total > averageOrderValue * 2;
+});
+
   return {
     generatedAt: new Date().toISOString(),
 
