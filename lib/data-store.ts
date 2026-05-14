@@ -6,7 +6,7 @@ const consumerSecret = process.env.WOOCOMMERCE_CONSUMER_SECRET!;
 
 async function fetchOrders() {
   const response = await fetch(
-    `${baseUrl}/wp-json/wc/v3/orders?per_page=50`,
+    `${baseUrl}/wp-json/wc/v3/orders?per_page=250`,
     {
       headers: {
         Authorization:
