@@ -49,24 +49,6 @@ async function fetchOrders() {
 
   return allOrders;
 }
-    {
-      headers: {
-        Authorization:
-          "Basic " +
-          Buffer.from(
-            `${consumerKey}:${consumerSecret}`
-          ).toString("base64")
-      },
-      cache: "no-store"
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch WooCommerce orders");
-  }
-
-  return response.json();
-}
 
 export async function getDashboardPayload(): Promise<DashboardPayload> {
   const orders = await fetchOrders();
@@ -119,7 +101,10 @@ export async function getDashboardPayload(): Promise<DashboardPayload> {
     (order: any) => {
       const total = Number(order.total ?? 0);
 
-      return total > Math.max(averageOrderValue * 2, 150);
+      return total > Math.max(
+        averageOrderValue * 2,
+        150
+      );
     }
   );
 
