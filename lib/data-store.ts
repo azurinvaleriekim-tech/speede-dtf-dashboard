@@ -13,8 +13,42 @@ async function fetchOrders() {
     1
   ).toISOString();
 
-  const response = await fetch(
-    `${baseUrl}/wp-json/wc/v3/orders?per_page=100&after=${startOfMonth}`,
+  let page = 1;
+
+  let allOrders: any[] = [];
+
+  while (true) {
+    const response = await fetch(
+      `${baseUrl}/wp-json/wc/v3/orders?per_page=100&page=${page}&after=${startOfMonth}`,
+      {
+        headers: {
+          Authorization:
+            "Basic " +
+            Buffer.from(
+              `${consumerKey}:${consumerSecret}`
+            ).toString("base64")
+        },
+        cache: "no-store"
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch WooCommerce orders");
+    }
+
+    const batch = await response.json();
+
+    if (!batch.length) {
+      break;
+    }
+
+    allOrders = [...allOrders, ...batch];
+
+    page++;
+  }
+
+  return allOrders;
+}
     {
       headers: {
         Authorization:
