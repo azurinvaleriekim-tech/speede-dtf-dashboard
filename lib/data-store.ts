@@ -3,10 +3,17 @@ import type { DashboardPayload } from "./types";
 const baseUrl = process.env.WOOCOMMERCE_URL!;
 const consumerKey = process.env.WOOCOMMERCE_CONSUMER_KEY!;
 const consumerSecret = process.env.WOOCOMMERCE_CONSUMER_SECRET!;
-
 async function fetchOrders() {
+  const now = new Date();
+
+  const startOfMonth = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    1
+  ).toISOString();
+
   const response = await fetch(
-    `${baseUrl}/wp-json/wc/v3/orders?per_page=100`,
+    `${baseUrl}/wp-json/wc/v3/orders?per_page=100&after=${startOfMonth}`,
     {
       headers: {
         Authorization:
@@ -26,6 +33,34 @@ async function fetchOrders() {
 
 export async function getDashboardPayload(): Promise<DashboardPayload> {
   const orders = await fetchOrders();
+  const now = new Date();
+
+const todayOrders = orders.filter((order: any) => {
+  const orderDate = new Date(order.date_created);
+
+  return orderDate.toDateString() === now.toDateString();
+});
+
+const monthOrders = orders.filter((order: any) => {
+  const orderDate = new Date(order.date_created);
+
+  return (
+    orderDate.getMonth() === now.getMonth() &&
+    orderDate.getFullYear() === now.getFullYear()
+  );
+});
+
+const revenueToday = todayOrders.reduce(
+  (sum: number, order: any) =>
+    sum + Number(order.total ?? 0),
+  0
+);
+
+const revenueThisMonth = monthOrders.reduce(
+  (sum: number, order: any) =>
+    sum + Number(order.total ?? 0),
+  0
+);
 
   const completed = orders.filter(
     (o: any) => o.status === "completed"
@@ -91,15 +126,24 @@ const suspiciousOrders = orders.filter((order: any) => {
 },
 
     kpis: {
-      ordersToday: orders.length,
-      ordersThisMonth: orders.length,
-      revenueToday,
-      revenueThisMonth: revenueToday,
-      averageOrderValue: Math.round(revenueToday / Math.max(1, orders.length)),
-      ordersInQueue: processing,
-      rushOrdersPending: 0,
-      ordersCompletedToday: completed
-    },
+  ordersToday: todayOrders.length,
+
+  ordersThisMonth: monthOrders.length,
+
+  revenueToday,
+
+  revenueThisMonth,
+
+  averageOrderValue: Math.round(
+    revenueThisMonth / Math.max(1, monthOrders.length)
+  ),
+
+  ordersInQueue: processing,
+
+  rushOrdersPending: 0,
+
+  ordersCompletedToday: completed
+},
 
     queue: orders.slice(0, 10).map((order: any) => ({
   id: String(order.id ?? ""),
