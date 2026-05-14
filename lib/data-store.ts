@@ -3,6 +3,7 @@ import type { DashboardPayload } from "./types";
 const baseUrl = process.env.WOOCOMMERCE_URL!;
 const consumerKey = process.env.WOOCOMMERCE_CONSUMER_KEY!;
 const consumerSecret = process.env.WOOCOMMERCE_CONSUMER_SECRET!;
+
 async function fetchOrders() {
   const now = new Date();
 
@@ -18,7 +19,9 @@ async function fetchOrders() {
       headers: {
         Authorization:
           "Basic " +
-          Buffer.from(`${consumerKey}:${consumerSecret}`).toString("base64")
+          Buffer.from(
+            `${consumerKey}:${consumerSecret}`
+          ).toString("base64")
       },
       cache: "no-store"
     }
@@ -33,34 +36,38 @@ async function fetchOrders() {
 
 export async function getDashboardPayload(): Promise<DashboardPayload> {
   const orders = await fetchOrders();
+
   const now = new Date();
 
-const todayOrders = orders.filter((order: any) => {
-  const orderDate = new Date(order.date_created);
+  const todayOrders = orders.filter((order: any) => {
+    const orderDate = new Date(order.date_created);
 
-  return orderDate.toDateString() === now.toDateString();
-});
+    return (
+      orderDate.toDateString() ===
+      now.toDateString()
+    );
+  });
 
-const monthOrders = orders.filter((order: any) => {
-  const orderDate = new Date(order.date_created);
+  const monthOrders = orders.filter((order: any) => {
+    const orderDate = new Date(order.date_created);
 
-  return (
-    orderDate.getMonth() === now.getMonth() &&
-    orderDate.getFullYear() === now.getFullYear()
+    return (
+      orderDate.getMonth() === now.getMonth() &&
+      orderDate.getFullYear() === now.getFullYear()
+    );
+  });
+
+  const revenueToday = todayOrders.reduce(
+    (sum: number, order: any) =>
+      sum + Number(order.total ?? 0),
+    0
   );
-});
 
-const revenueToday = todayOrders.reduce(
-  (sum: number, order: any) =>
-    sum + Number(order.total ?? 0),
-  0
-);
-
-const revenueThisMonth = monthOrders.reduce(
-  (sum: number, order: any) =>
-    sum + Number(order.total ?? 0),
-  0
-);
+  const revenueThisMonth = monthOrders.reduce(
+    (sum: number, order: any) =>
+      sum + Number(order.total ?? 0),
+    0
+  );
 
   const completed = orders.filter(
     (o: any) => o.status === "completed"
@@ -70,43 +77,17 @@ const revenueThisMonth = monthOrders.reduce(
     (o: any) => o.status === "processing"
   ).length;
 
-  const now = new Date();
+  const averageOrderValue =
+    revenueThisMonth /
+    Math.max(1, monthOrders.length);
 
-const todayOrders = orders.filter((order: any) => {
-  const orderDate = new Date(order.date_created);
+  const suspiciousOrders = orders.filter(
+    (order: any) => {
+      const total = Number(order.total ?? 0);
 
-  return orderDate.toDateString() === now.toDateString();
-});
-
-const monthOrders = orders.filter((order: any) => {
-  const orderDate = new Date(order.date_created);
-
-  return (
-    orderDate.getMonth() === now.getMonth() &&
-    orderDate.getFullYear() === now.getFullYear()
+      return total > Math.max(averageOrderValue * 2, 150);
+    }
   );
-});
-
-const revenueToday = todayOrders.reduce(
-  (sum: number, order: any) =>
-    sum + Number(order.total ?? 0),
-  0
-);
-
-const revenueThisMonth = monthOrders.reduce(
-  (sum: number, order: any) =>
-    sum + Number(order.total ?? 0),
-  0
-);
-
-const averageOrderValue =
-  revenueToday / Math.max(1, orders.length);
-
-const suspiciousOrders = orders.filter((order: any) => {
-  const total = Number(order.total ?? 0);
-
-  return total > Math.max(averageOrderValue * 2, 150);
-});
 
   return {
     generatedAt: new Date().toISOString(),
@@ -116,65 +97,71 @@ const suspiciousOrders = orders.filter((order: any) => {
     countdownSeconds: 0,
 
     settings: {
-  cutoffTime: "5:00 PM",
-  afterHoursTime: "8:00 PM",
-  refreshIntervalSeconds: 60,
-  tvMode: false,
-  soundEnabled: true,
-  dailyRevenueGoal: 10000,
-  dailyOrderGoal: 100
-},
+      cutoffTime: "5:00 PM",
+      afterHoursTime: "8:00 PM",
+      refreshIntervalSeconds: 60,
+      tvMode: false,
+      soundEnabled: true,
+      dailyRevenueGoal: 10000,
+      dailyOrderGoal: 100
+    },
 
     kpis: {
-  ordersToday: todayOrders.length,
+      ordersToday: todayOrders.length,
 
-  ordersThisMonth: monthOrders.length,
+      ordersThisMonth: monthOrders.length,
 
-  revenueToday,
+      revenueToday,
 
-  revenueThisMonth,
+      revenueThisMonth,
 
-  averageOrderValue: Math.round(
-    revenueThisMonth / Math.max(1, monthOrders.length)
-  ),
+      averageOrderValue: Math.round(
+        averageOrderValue
+      ),
 
-  ordersInQueue: processing,
+      ordersInQueue: processing,
 
-  rushOrdersPending: 0,
+      rushOrdersPending: 0,
 
-  ordersCompletedToday: completed
-},
+      ordersCompletedToday: completed
+    },
 
     queue: orders.slice(0, 10).map((order: any) => ({
-  id: String(order.id ?? ""),
+      id: String(order.id ?? ""),
 
-  orderNumber: `#${order.number ?? "Unknown"}`,
+      orderNumber: `#${order.number ?? "Unknown"}`,
 
-  customerName:
-    `${order.billing?.first_name ?? ""} ${order.billing?.last_name ?? ""}`.trim() || "Customer",
+      customerName:
+        `${order.billing?.first_name ?? ""} ${
+          order.billing?.last_name ?? ""
+        }`.trim() || "Customer",
 
-  orderType: "DTF Gang Sheet",
+      orderType: "DTF Gang Sheet",
 
-  status:
-    order.status === "completed"
-      ? "Completed"
-      : "Printing",
+      status:
+        order.status === "completed"
+          ? "Completed"
+          : "Printing",
 
-  createdAt: order.date_created ?? new Date().toISOString(),
+      createdAt:
+        order.date_created ??
+        new Date().toISOString(),
 
-  estimatedCompletion:
-    order.date_created ?? new Date().toISOString(),
+      estimatedCompletion:
+        order.date_created ??
+        new Date().toISOString(),
 
-  rush: false,
+      rush: false,
 
-  total: Number(order.total ?? 0),
+      total: Number(order.total ?? 0),
 
-  itemCount: order.line_items?.length ?? 0,
+      itemCount:
+        order.line_items?.length ?? 0,
 
-  assignedTo: "Production Team",
+      assignedTo: "Production Team",
 
-  source: "WooCommerce"
-})),
+      source: "WooCommerce"
+    })),
 
     charts: {
       revenueToday: [],
@@ -184,19 +171,20 @@ const suspiciousOrders = orders.filter((order: any) => {
     },
 
     topProducts: [],
+
     printerUtilization: [],
+
     completionPercentage: Math.round(
       (completed / Math.max(1, orders.length)) * 100
     ),
 
     employeeLeaderboard: [],
 
-ticker: [
-  `${orders.length} WooCommerce orders synced`,
-  `${completed} completed orders`,
-  `${processing} processing orders`,
-  `${suspiciousOrders.length} suspicious high-value orders detected`
-]
-
+    ticker: [
+      `${orders.length} WooCommerce orders synced`,
+      `${completed} completed orders`,
+      `${processing} processing orders`,
+      `${suspiciousOrders.length} suspicious high-value orders detected`
+    ]
   };
 }
