@@ -35,8 +35,36 @@ export async function getDashboardPayload(): Promise<DashboardPayload> {
     (o: any) => o.status === "processing"
   ).length;
 
-  const revenueToday = orders.reduce(
-  (sum: number, order: any) => sum + Number(order.total ?? 0),
+  const now = new Date();
+
+const todayOrders = orders.filter((order: any) => {
+  const orderDate = new Date(order.date_created);
+
+  return (
+    orderDate.getDate() === now.getDate() &&
+    orderDate.getMonth() === now.getMonth() &&
+    orderDate.getFullYear() === now.getFullYear()
+  );
+});
+
+const monthOrders = orders.filter((order: any) => {
+  const orderDate = new Date(order.date_created);
+
+  return (
+    orderDate.getMonth() === now.getMonth() &&
+    orderDate.getFullYear() === now.getFullYear()
+  );
+});
+
+const revenueToday = todayOrders.reduce(
+  (sum: number, order: any) =>
+    sum + Number(order.total ?? 0),
+  0
+);
+
+const revenueThisMonth = monthOrders.reduce(
+  (sum: number, order: any) =>
+    sum + Number(order.total ?? 0),
   0
 );
 
