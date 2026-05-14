@@ -129,3 +129,6 @@ ticker: [
   `${processing} processing orders`,
   `${suspiciousOrders.length} suspicious high-value orders detected`
 ]
+
+  };
+}
