@@ -46,13 +46,16 @@ export function TvDashboard() {
         </div>
       </section>,
       <section key="charts" className="grid flex-1 grid-cols-2 gap-5">
-        <RevenueTrend data={data.charts.revenueToday} />
-        <OrdersPerHour data={data.charts.ordersPerHour} />
-        <ThroughputChart data={data.charts.throughput} />
-        <MonthlySales data={data.charts.monthlySales} />
-        <TopProductsPanel data={data} />
-        <LeaderboardPanel data={data} />
-      </section>
+  <RevenueTrend data={data.charts.revenueToday} />
+
+  <OrdersPerHour data={data.charts.ordersPerHour} />
+
+  <ThroughputChart data={data.charts.throughput} />
+
+  <MonthlySales data={data.charts.monthlySales} />
+
+  <TopProductsPanel data={data} />
+</section>
     ];
 
     return pages[page];
