@@ -183,11 +183,63 @@ export async function getDashboardPayload(): Promise<DashboardPayload> {
     })),
 
     charts: {
-      revenueToday: [],
-      ordersPerHour: [],
-      throughput: [],
-      monthlySales: []
+  revenueToday: todayOrders.map((order: any) => ({
+    label: new Date(order.date_created).toLocaleTimeString(
+      "en-US",
+      {
+        hour: "numeric"
+      }
+    ),
+    value: Number(order.total ?? 0)
+  })),
+
+  ordersPerHour: Array.from(
+    { length: 24 },
+    (_, hour) => {
+      const count = todayOrders.filter(
+        (order: any) => {
+          const orderHour = new Date(
+            order.date_created
+          ).getHours();
+
+          return orderHour === hour;
+        }
+      ).length;
+
+      return {
+        label: `${hour}:00`,
+        value: count
+      };
+    }
+  ),
+
+  throughput: [
+    {
+      label: "Completed",
+      value: completed
     },
+    {
+      label: "Processing",
+      value: processing
+    }
+  ],
+
+  monthlySales: monthOrders.map(
+    (order: any) => ({
+      label: new Date(
+        order.date_created
+      ).toLocaleDateString(
+        "en-US",
+        {
+          month: "short",
+          day: "numeric"
+        }
+      ),
+
+      value: Number(order.total ?? 0)
+    })
+  )
+},
 
     topProducts: [],
 
