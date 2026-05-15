@@ -8,7 +8,11 @@ import { HeaderBar } from "./HeaderBar";
 import { KpiCard } from "./KpiCard";
 import { QueueTable } from "./QueueTable";
 import { MonthlySales, OrdersPerHour, RevenueTrend, ThroughputChart } from "./Charts";
-import { GoalPanel, LeaderboardPanel, PrinterPanel, TopProductsPanel } from "./OperationsPanels";
+import {
+  GoalPanel,
+  PrinterPanel,
+  TopProductsPanel
+} from "./OperationsPanels";
 import { Ticker } from "./Ticker";
 
 export function TvDashboard() {
