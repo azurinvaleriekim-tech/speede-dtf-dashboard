@@ -36,7 +36,6 @@ export function DashboardView({ tv = false }: { tv?: boolean }) {
           <KpiCard title="Revenue This Month" value={data.kpis.revenueThisMonth} icon={Activity} currency accent="lime" detail="tracked across stores" />
           <KpiCard title="Average Order Value" value={data.kpis.averageOrderValue} icon={PackageCheck} currency accent="amber" detail="today's blended AOV" />
           <KpiCard title="Orders In Queue" value={data.kpis.ordersInQueue} icon={Clock3} accent="amber" detail="waiting or printing" />
-          <KpiCard title="Rush Pending" value={data.kpis.rushOrdersPending} icon={Flame} accent="danger" detail="requires priority handling" />
           <KpiCard title="Completed Today" value={data.kpis.ordersCompletedToday} icon={CheckCircle2} accent="lime" detail="closed production jobs" />
         </section>
 
