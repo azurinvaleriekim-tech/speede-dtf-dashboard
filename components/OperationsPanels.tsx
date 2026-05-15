@@ -64,20 +64,51 @@ export function LeaderboardPanel({ data }: { data: DashboardPayload }) {
   );
 }
 
-export function TopProductsPanel({ data }: { data: DashboardPayload }) {
+export function TopProductsPanel({
+  data
+}: {
+  data: any;
+}) {
   return (
     <section className="glass-panel rounded-lg p-5">
-      <h2 className="mb-5 text-xl font-black">Top Selling Products</h2>
-      <div className="space-y-3">
-        {data.topProducts.map((product) => (
-          <div key={product.name} className="flex items-center justify-between border-b border-line pb-3 last:border-none last:pb-0">
-            <div>
-              <p className="font-bold text-white">{product.name}</p>
-              <p className="text-sm text-white/42">{product.units} units</p>
-            </div>
-            <p className="text-lg font-black text-cyan">${product.revenue.toLocaleString()}</p>
-          </div>
-        ))}
+      <h2 className="mb-5 text-2xl font-black text-white">
+        Top Selling Products
+      </h2>
+
+      <div className="space-y-4">
+        {data.topProducts?.length ? (
+          data.topProducts.map(
+            (product: any, index: number) => (
+              <div
+                key={product.name}
+                className="flex items-center justify-between rounded-lg border border-white/10 bg-white/5 p-4"
+              >
+                <div>
+                  <p className="font-bold text-white">
+                    #{index + 1} {product.name}
+                  </p>
+
+                  <p className="text-sm text-white/60">
+                    {product.quantity} sold
+                  </p>
+                </div>
+
+                <div className="text-right">
+                  <p className="font-black text-lime">
+                    $
+                    {Number(
+                      product.revenue
+                    ).toFixed(2)}
+                  </p>
+                </div>
+              </div>
+            )
+          )
+        ) : (
+          <p className="text-white/50">
+            No product sales yet.
+          </p>
+        )}
       </div>
     </section>
   );
