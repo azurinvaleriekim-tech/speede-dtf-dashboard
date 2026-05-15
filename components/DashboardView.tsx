@@ -6,7 +6,7 @@ import { HeaderBar } from "./HeaderBar";
 import { KpiCard } from "./KpiCard";
 import { MonthlySales, OrdersPerHour, RevenueTrend, ThroughputChart } from "./Charts";
 import { QueueTable } from "./QueueTable";
-import { GoalPanel, LeaderboardPanel, PrinterPanel, TopProductsPanel } from "./OperationsPanels";
+import { GoalPanel, PrinterPanel, TopProductsPanel } from "./OperationsPanels";
 import { Ticker } from "./Ticker";
 import { useDashboard } from "./useDashboard";
 
@@ -63,7 +63,6 @@ export function DashboardView({ tv = false }: { tv?: boolean }) {
               className="grid gap-5 lg:grid-cols-2"
             >
               <TopProductsPanel data={data} />
-              <LeaderboardPanel data={data} />
             </motion.section>
           )}
         </AnimatePresence>
