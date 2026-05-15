@@ -140,6 +140,8 @@ export async function getDashboardPayload(): Promise<DashboardPayload> {
 
       ordersInQueue: processing,
 
+      rushOrdersPending: 0,
+
       ordersCompletedToday: completed
     },
 
