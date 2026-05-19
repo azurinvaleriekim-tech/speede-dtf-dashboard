@@ -84,9 +84,9 @@ export async function getDashboardPayload(): Promise<DashboardPayload> {
     );
 
   const dashboardStatus =
-    countdownSeconds > 0
-      ? "OPEN"
-      : "CUT OFF";
+  countdownSeconds > 0
+    ? "OPEN"
+    : "CUT OFF CLOSED";
 
   const todayOrders = orders.filter(
     (order: any) => {
