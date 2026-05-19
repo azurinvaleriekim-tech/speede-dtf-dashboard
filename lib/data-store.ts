@@ -186,19 +186,20 @@ export async function getDashboardPayload(): Promise<DashboardPayload> {
     );
   });
 
-  const topProducts = Array.from(
-    productMap.entries()
+ const topProducts = Array.from(
+  productMap.entries()
+)
+  .map(([name, data]: any) => ({
+    name,
+    quantity: data.quantity,
+    units: data.quantity,
+    revenue: data.revenue
+  }))
+  .sort(
+    (a: any, b: any) =>
+      b.quantity - a.quantity
   )
-    .map(([name, data]: any) => ({
-      name,
-      quantity: data.quantity,
-      revenue: data.revenue
-    }))
-    .sort(
-      (a, b) =>
-        b.quantity - a.quantity
-    )
-    .slice(0, 5);
+  .slice(0, 5);
 
   return {
     generatedAt:
