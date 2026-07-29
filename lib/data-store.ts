@@ -22,7 +22,7 @@ async function fetchOrders() {
 
   while (true) {
     const response = await fetch(
-      `${baseUrl}/wp-json/wc/v3/orders?per_page=100&page=${page}&after=${startOfMonth}`,
+      `${baseUrl}/wp-json/wc/v3/orders?per_page=100&page=${page}&after=${startOfMonth}&status=processing,completed,on-hold`,
       {
         headers: {
           Authorization:
@@ -57,15 +57,15 @@ async function fetchOrders() {
 }
 
 export async function getDashboardPayload(): Promise<DashboardPayload> {
-  const allOrders = await fetchOrders();
+  const orders = await fetchOrders();
+  console.log("Orders fetched:", orders.length);
 
-const orders = allOrders.filter((order: any) =>
-  [
-    "processing",
-    "completed",
-    "on-hold"
-  ].includes(order.status)
-);
+const statusCounts = orders.reduce((acc: any, order: any) => {
+  acc[order.status] = (acc[order.status] || 0) + 1;
+  return acc;
+}, {});
+
+console.log(statusCounts);
 
   const now = new Date();
 
