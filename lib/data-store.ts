@@ -57,7 +57,15 @@ async function fetchOrders() {
 }
 
 export async function getDashboardPayload(): Promise<DashboardPayload> {
-  const orders = await fetchOrders();
+  const allOrders = await fetchOrders();
+
+const orders = allOrders.filter((order: any) =>
+  [
+    "processing",
+    "completed",
+    "on-hold"
+  ].includes(order.status)
+);
 
   const now = new Date();
 
