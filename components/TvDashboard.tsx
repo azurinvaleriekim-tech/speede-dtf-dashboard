@@ -16,7 +16,7 @@ import {
 import { Ticker } from "./Ticker";
 
 export function TvDashboard() {
-  const { data } = useDashboard(60);
+  const { data } = useDashboard(180);
   const [page, setPage] = useState(0);
 
   useEffect(() => {
