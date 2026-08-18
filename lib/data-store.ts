@@ -231,7 +231,7 @@ console.log(statusCounts);
 
       afterHoursTime: "8:00 PM",
 
-      refreshIntervalSeconds: 60,
+      refreshIntervalSeconds: 180,
 
       tvMode: false,
 
