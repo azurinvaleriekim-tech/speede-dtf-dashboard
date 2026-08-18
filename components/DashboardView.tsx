@@ -11,7 +11,7 @@ import { Ticker } from "./Ticker";
 import { useDashboard } from "./useDashboard";
 
 export function DashboardView({ tv = false }: { tv?: boolean }) {
-  const { data, error } = useDashboard(60);
+  const { data, error } = useDashboard(180);
 
   if (error) {
     return <main className="grid min-h-screen place-items-center bg-ink text-danger">Dashboard feed unavailable.</main>;
